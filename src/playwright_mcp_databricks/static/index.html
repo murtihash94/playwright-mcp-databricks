@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playwright MCP Server on Databricks Apps</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Highlight.js CSS and JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            hljs.highlightAll();
+        });
+    </script>
+</head>
+
+<body class="bg-gray-900 text-gray-100 font-sans">
+
+    <!-- Hero Section -->
+    <div class="py-12 sm:py-16 h-screen flex items-center justify-center">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <!-- Logos Placeholder -->
+            <div class="flex justify-center items-center gap-8 mb-8">
+                <!-- Databricks Logo -->
+                <div class="w-24 h-24 rounded-full flex items-center justify-center">
+                    <img src="https://cdn.bfldr.com/9AYANS2F/at/k8bgnnxhb4bggjk88r4x9snf/databricks-symbol-color.svg?auto=webp&format=png"
+                        alt="Databricks Logo" class="w-20 h-20">
+                </div>
+                <!-- Playwright Logo -->
+                <div class="w-24 h-24 rounded-full flex items-center justify-center bg-white">
+                    <img src="https://playwright.dev/img/playwright-logo.svg" alt="Playwright Logo"
+                        class="w-20 h-20">
+                </div>
+                <!-- MCP Logo -->
+                <div class="w-24 h-24 rounded-full flex items-center justify-center">
+                    <img src="https://avatars.githubusercontent.com/u/182288589?s=200&v=4" alt="MCP Logo"
+                        class="w-20 h-20 rounded-full">
+                </div>
+
+            </div>
+            <h1 class="text-4xl font-bold text-white sm:text-5xl text-balance">
+                Playwright Model Context Protocol Server on Databricks Apps
+            </h1>
+            <p class="mt-6 text-xl text-gray-300">
+                Browser automation capabilities powered by Playwright, accessible via the Model Context Protocol on Databricks Apps.
+            </p>
+            <div class="mt-10 flex gap-4 justify-center">
+                <a href="#connect"
+                    class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                    Get Started
+                </a>
+                <a href="https://playwright.dev"
+                    target="_blank"
+                    class="inline-flex items-center px-6 py-3 border border-gray-600 text-base font-medium rounded-md text-gray-100 bg-gray-800 hover:bg-gray-700">
+                    Playwright Docs
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="py-12 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-white mb-12">Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-900 p-6 rounded-lg">
+                    <div class="text-blue-500 text-3xl mb-4">🚀</div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Fast & Lightweight</h3>
+                    <p class="text-gray-300">Uses Playwright's accessibility tree, not pixel-based input. No screenshots needed.</p>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-lg">
+                    <div class="text-green-500 text-3xl mb-4">🤖</div>
+                    <h3 class="text-xl font-semibold text-white mb-2">LLM-Friendly</h3>
+                    <p class="text-gray-300">No vision models needed. Operates purely on structured accessibility data.</p>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-lg">
+                    <div class="text-purple-500 text-3xl mb-4">🎯</div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Deterministic</h3>
+                    <p class="text-gray-300">Avoids ambiguity common with screenshot-based approaches. Precise element targeting.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connection Section -->
+    <div id="connect" class="py-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-center text-white mb-8">Connect to the Server</h2>
+            <div class="mt-10 bg-gray-800 shadow overflow-hidden sm:rounded-lg">
+                <div class="px-4 py-5 sm:px-6">
+                    <h3 class="text-lg leading-6 font-medium text-white">Connection Details</h3>
+                </div>
+                <div class="border-t border-gray-700 px-4 py-5 sm:p-6">
+                    <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+                        <div class="sm:col-span-1">
+                            <dt class="text-sm font-medium text-gray-400">
+                                Server URL
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-100">
+                                <code
+                                    class="bg-gray-900 px-2 py-1 rounded">https://your-app-url.databricksapps.com/api/mcp/</code>
+                            </dd>
+                        </div>
+                        <div class="sm:col-span-1">
+                            <dt class="text-sm font-medium text-gray-400">
+                                Transport Type
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-100">
+                                <code class="bg-gray-900 px-2 py-1 rounded">
+                                    Streamable HTTP (SSE)
+                                </code>
+                            </dd>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <dt class="text-sm font-medium text-gray-400">
+                                Example Connection (Python)
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-100">
+                                <pre class="bg-gray-900 p-3 rounded overflow-x-auto">
+<code class="language-python">from databricks.sdk import WorkspaceClient
+from databricks_mcp import DatabricksOAuthClientProvider
+from mcp.client.streamable_http import streamablehttp_client as connect
+from mcp import ClientSession
+
+client = WorkspaceClient()
+
+async def main():
+    # Connect to the Playwright MCP server on Databricks Apps
+    app_url = "https://your-app-url.databricksapps.com/api/mcp/"
+    
+    async with connect(app_url, auth=DatabricksOAuthClientProvider(client)) as (
+        read_stream,
+        write_stream,
+        _,
+    ):
+        # Create a session using the client streams
+        async with ClientSession(read_stream, write_stream) as session:
+            # Initialize the connection
+            await session.initialize()
+            
+            # Navigate to a URL
+            result = await session.call_tool("browser_navigate", {
+                "url": "https://example.com"
+            })
+            
+            # Take a snapshot of the page
+            snapshot = await session.call_tool("browser_snapshot", {})
+            print(snapshot)
+</code>
+                                </pre>
+                            </dd>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <dt class="text-sm font-medium text-gray-400">
+                                Using Claude Desktop or Other MCP Clients
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-100">
+                                <p class="mb-3">Add to your MCP client configuration (e.g., Claude Desktop):</p>
+                                <pre class="bg-gray-900 p-3 rounded overflow-x-auto">
+<code class="language-json">{
+  "mcpServers": {
+    "playwright-databricks": {
+      "url": "https://your-app-url.databricksapps.com/api/mcp/",
+      "headers": {
+        "Authorization": "Bearer YOUR_DATABRICKS_TOKEN"
+      }
+    }
+  }
+}</code>
+                                </pre>
+                                <p class="mt-3 text-sm text-gray-400">
+                                    Get your Databricks token by running: <code class="bg-gray-900 px-2 py-1 rounded">databricks auth token -p your-profile-name</code>
+                                </p>
+                            </dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Available Tools Section -->
+    <div class="py-12 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-center text-white mb-8">Available Tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-900 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold text-blue-400 mb-2">browser_navigate</h3>
+                    <p class="text-sm text-gray-300">Navigate to a URL</p>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold text-blue-400 mb-2">browser_snapshot</h3>
+                    <p class="text-sm text-gray-300">Capture accessibility snapshot of the page</p>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold text-blue-400 mb-2">browser_click</h3>
+                    <p class="text-sm text-gray-300">Click on an element</p>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold text-blue-400 mb-2">browser_type</h3>
+                    <p class="text-sm text-gray-300">Type text into an element</p>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold text-blue-400 mb-2">browser_take_screenshot</h3>
+                    <p class="text-sm text-gray-300">Take a screenshot of the page</p>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold text-blue-400 mb-2">browser_evaluate</h3>
+                    <p class="text-sm text-gray-300">Execute JavaScript on the page</p>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <a href="https://github.com/microsoft/playwright-mcp#tools" target="_blank" rel="noopener"
+                    class="text-blue-400 hover:text-blue-300">
+                    View all available tools →
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Documentation Section -->
+    <div class="py-12">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold text-white mb-4">Documentation</h2>
+            <p class="text-lg text-gray-300 mb-6">
+                Learn more about Playwright MCP and how to deploy your own instance on Databricks Apps.
+            </p>
+            <div class="flex gap-4 justify-center">
+                <a href="https://github.com/microsoft/playwright-mcp" target="_blank" rel="noopener"
+                    class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                    Playwright MCP GitHub
+                </a>
+                <a href="https://modelcontextprotocol.io" target="_blank" rel="noopener"
+                    class="inline-flex items-center px-6 py-3 border border-gray-600 text-base font-medium rounded-md text-gray-100 bg-gray-800 hover:bg-gray-700">
+                    MCP Documentation
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="py-8 bg-gray-800 border-t border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm">
+                Playwright MCP Server on Databricks Apps | 
+                <a href="https://github.com/microsoft/playwright-mcp" class="text-blue-400 hover:text-blue-300">GitHub</a> | 
+                <a href="https://playwright.dev" class="text-blue-400 hover:text-blue-300">Playwright</a>
+            </p>
+        </div>
+    </div>
+
+</body>
+
+</html>
