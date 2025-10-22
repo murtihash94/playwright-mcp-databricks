@@ -7,10 +7,12 @@ A Model Context Protocol (MCP) server that provides browser automation capabilit
 - **Fast and lightweight**. Uses Playwright's accessibility tree, not pixel-based input.
 - **LLM-friendly**. No vision models needed, operates purely on structured data.
 - **Deterministic tool application**. Avoids ambiguity common with screenshot-based approaches.
+- **Databricks Apps deployment**. Deploy as a managed service on Databricks Apps with enterprise authentication.
 
 ### Requirements
 - Node.js 18 or newer
 - VS Code, Cursor, Windsurf, Claude Desktop, Goose or any other MCP client
+- For Databricks Apps deployment: Python 3.11+, uv, Databricks CLI
 
 <!--
 // Generate using:
@@ -905,3 +907,69 @@ http.createServer(async (req, res) => {
 
 
 <!--- End of tools generated section -->
+
+## Deploying on Databricks Apps
+
+You can deploy this Playwright MCP server as a Databricks App for enterprise use with managed infrastructure and authentication.
+
+### Quick Start
+
+1. **Install prerequisites**:
+   ```bash
+   pip install databricks-cli
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
+
+2. **Authenticate with Databricks**:
+   ```bash
+   databricks auth login --profile your-profile-name
+   ```
+
+3. **Build and deploy**:
+   ```bash
+   # Build the package
+   uv build --wheel
+   
+   # Deploy using databricks bundle
+   databricks bundle deploy -p your-profile-name
+   databricks bundle run playwright-mcp-on-apps -p your-profile-name
+   ```
+
+4. **Connect to your deployed server**:
+   ```python
+   from databricks.sdk import WorkspaceClient
+   from databricks_mcp import DatabricksOAuthClientProvider
+   from mcp.client.streamable_http import streamablehttp_client as connect
+   from mcp import ClientSession
+   
+   client = WorkspaceClient()
+   app_url = "https://your-app-url.databricksapps.com/api/mcp/"
+   
+   async with connect(app_url, auth=DatabricksOAuthClientProvider(client)) as streams:
+       async with ClientSession(streams[0], streams[1]) as session:
+           await session.initialize()
+           result = await session.call_tool("browser_navigate", {"url": "https://example.com"})
+   ```
+
+### Features of Databricks Deployment
+
+- **Managed infrastructure**: Databricks handles scaling, availability, and updates
+- **Enterprise authentication**: Integrates with Databricks token-based auth
+- **Secure by default**: Runs in isolated containers with network controls
+- **Web UI**: Includes a landing page showing connection details and examples
+- **Health monitoring**: Built-in health check endpoints
+
+### Complete Documentation
+
+For comprehensive deployment instructions, configuration options, and troubleshooting:
+
+**📖 [Read the Databricks Deployment Guide](./README_DATABRICKS.md)**
+
+The guide covers:
+- Architecture and components
+- Local development setup
+- Two deployment methods (bundle CLI and apps CLI)
+- Connection examples for Python, Claude Desktop, and MCP Inspector
+- Configuration and customization options
+- Troubleshooting common issues
+- Security best practices

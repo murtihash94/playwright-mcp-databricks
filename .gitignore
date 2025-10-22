@@ -8,3 +8,27 @@ playwright-report/
 .DS_Store
 .env
 sessions/
+
+# Python / Databricks Apps
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+.build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.uv/
+uv.lock
+*.whl
